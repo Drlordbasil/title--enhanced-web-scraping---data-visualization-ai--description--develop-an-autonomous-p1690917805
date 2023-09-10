@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import time
 
+
 class WebScraper:
     def __init__(self, url):
         self.url = url

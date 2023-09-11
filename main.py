@@ -40,9 +40,15 @@ class DataAggregator:
         return structured_data
 
     def structure_data(self, data):
-        structured_data = []
         # Code to structure data goes here
         # Append structured data to the 'structured_data' list
+        structured_data = []
+        for item in data:
+            structured_item = {
+                "text": item,
+                "sentiment": None
+            }
+            structured_data.append(structured_item)
         return structured_data
 
 
@@ -149,7 +155,10 @@ def main():
     analyzer = SentimentAnalyzer()
 
     # Perform sentiment analysis on the data
-    sentiments = [analyzer.analyze_sentiment(text) for text in aggregated_data]
+    sentiments = [analyzer.analyze_sentiment(
+        item["text"]) for item in aggregated_data]
+    for i, sentiment in enumerate(sentiments):
+        aggregated_data[i]["sentiment"] = sentiment
 
     # Create a DataPreprocessor object
     preprocessor = DataPreprocessor()
